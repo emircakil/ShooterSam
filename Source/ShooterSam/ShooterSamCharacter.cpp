@@ -96,7 +96,6 @@ void AShooterSamCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();
-
 	if (Controller != nullptr)
 	{
 		// find out which way is forward
@@ -109,9 +108,14 @@ void AShooterSamCharacter::Move(const FInputActionValue& Value)
 		// get right vector 
 		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
+
+
 		// add movement 
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 		AddMovementInput(RightDirection, MovementVector.X);
+		//UE_LOG(LogTemp, Display, TEXT("Y: %f, X: %f"), MovementVector.Y, MovementVector.X);
+
+		
 	}
 }
 
@@ -119,7 +123,7 @@ void AShooterSamCharacter::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
-
+	UE_LOG(LogTemp, Display, TEXT("Look: Y: %f, X: %f"), LookAxisVector.Y, LookAxisVector.X)
 	if (Controller != nullptr)
 	{
 		// add yaw and pitch input to controller
