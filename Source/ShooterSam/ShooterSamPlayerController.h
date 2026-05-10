@@ -4,6 +4,7 @@
 #include "GameFramework/PlayerController.h"
 #include "InputMappingContext.h"
 #include "EnhancedInputSubsystems.h"
+#include "Blueprint/UserWidget.h"
 #include "ShooterSamPlayerController.generated.h"
 
 UCLASS()
@@ -20,7 +21,16 @@ public:
     UPROPERTY(EditDefaultsOnly, Category = "Input")
     TObjectPtr<UInputMappingContext> MobileExcludedMappingContext;
 
+    // Assign your WBP_Crosshair blueprint to this in the editor
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
+    TSubclassOf<UUserWidget>PlayerHUDWidgetClass;
+
 protected:
     virtual void OnPossess(APawn* InPawn) override;
     virtual void OnUnPossess() override;
+
+private:
+    UPROPERTY()
+    UUserWidget* HUDWidget;
+
 };

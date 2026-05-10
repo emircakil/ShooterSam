@@ -1,8 +1,20 @@
 #include "ShooterSamPlayerController.h"
+#include "Blueprint/UserWidget.h"
 
 void AShooterSamPlayerController::OnPossess(APawn* InPawn)
 {
     Super::OnPossess(InPawn);
+
+    if (PlayerHUDWidgetClass)
+    {
+        HUDWidget = CreateWidget<UUserWidget>(this, PlayerHUDWidgetClass);
+
+        if (HUDWidget)
+        {
+            HUDWidget->AddToViewport();
+        }
+    }
+
 
     if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
         ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
