@@ -4,7 +4,7 @@
 #include "GameFramework/PlayerController.h"
 #include "InputMappingContext.h"
 #include "EnhancedInputSubsystems.h"
-#include "Blueprint/UserWidget.h"
+#include "HUDWidget.h"
 #include "ShooterSamPlayerController.generated.h"
 
 UCLASS()
@@ -23,7 +23,7 @@ public:
 
     // Assign your WBP_Crosshair blueprint to this in the editor
     UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
-    TSubclassOf<UUserWidget>PlayerHUDWidgetClass;
+    TSubclassOf<UHUDWidget>PlayerHUDWidgetClass;
 
 protected:
     virtual void OnPossess(APawn* InPawn) override;
@@ -31,6 +31,6 @@ protected:
 
 private:
     UPROPERTY()
-    UUserWidget* HUDWidget;
+    UUserWidget* HUDWidget; 
 
 };

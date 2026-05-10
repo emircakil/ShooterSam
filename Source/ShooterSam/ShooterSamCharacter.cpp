@@ -85,11 +85,19 @@ void AShooterSamCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AShooterSamCharacter::Look);
+
+		// Shoot
+		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Started, this, &AShooterSamCharacter::Shoot);
 	}
 	else
 	{
 		UE_LOG(LogTemplateCharacter, Error, TEXT("'%s' Failed to find an Enhanced Input component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
 	}
+}
+
+void AShooterSamCharacter::Shoot()
+{
+	UE_LOG(LogTemp, Display, TEXT("Shoot!"));
 }
 
 void AShooterSamCharacter::Move(const FInputActionValue& Value)
@@ -123,7 +131,6 @@ void AShooterSamCharacter::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
-	UE_LOG(LogTemp, Display, TEXT("Look: Y: %f, X: %f"), LookAxisVector.Y, LookAxisVector.X)
 	if (Controller != nullptr)
 	{
 		// add yaw and pitch input to controller

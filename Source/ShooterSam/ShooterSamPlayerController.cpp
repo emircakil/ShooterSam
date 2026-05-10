@@ -1,5 +1,5 @@
 #include "ShooterSamPlayerController.h"
-#include "Blueprint/UserWidget.h"
+#include "HUDWidget.h"
 
 void AShooterSamPlayerController::OnPossess(APawn* InPawn)
 {
